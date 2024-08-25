@@ -1,17 +1,30 @@
-package Entity;
+package com.entites;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Persistence;
 
 @Entity
 public class clients {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private int id;
+    @Id
+    private Long Long;
+    
+    public Long getLong() {
+        return Long;
+    }
+
+    public void setLong(Long l) {
+        Long = l;
+    }
+
     @Column(name = "first_name_clients")
     private String nom;
     @Column(name = "laste_name clients")
@@ -48,6 +61,7 @@ public class clients {
         Num_cin = num_cin;
         Code_postale = code_postale;
     }
+    ;
 
     public String getNom() {
         return nom;
@@ -117,4 +131,27 @@ public class clients {
         return Code_postale;
     }
 
-}
+    public static void add(clients client) {
+        try (EntityManagerFactory emf = Persistence.createEntityManagerFactory("your-persistence-unit"); EntityManager em = emf.createEntityManager()) {
+            
+            em.getTransaction().begin();
+            em.persist(client);
+            em.getTransaction().commit();
+            
+        }
+    }
+
+    public static void remove(clients client) {
+        try (EntityManagerFactory emf = Persistence.createEntityManagerFactory("your-persistence-unit"); EntityManager em = emf.createEntityManager()) {
+            
+            em.getTransaction().begin();
+            clients foundClient = em.find(clients.class, client.getId());
+            if (foundClient != null) {
+                em.remove(foundClient);
+            }
+            em.getTransaction().commit();
+            
+        }
+    }
+    }
+

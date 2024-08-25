@@ -1,4 +1,4 @@
-package Entity;
+package com.entites;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -11,6 +11,8 @@ public class Agant_orange {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+ 
+
     @Column(name = "email_agant")
     private String email;
     @Column(name = "password_agant")
@@ -19,7 +21,7 @@ public class Agant_orange {
     private String nom;
     @Column(name = "laste_name agant")
     private String prenom;
-
+   
     public Agant_orange(String email, String password, String nom, String prenom, String num_telephone,
             String genre, String poste, String botique) {
 

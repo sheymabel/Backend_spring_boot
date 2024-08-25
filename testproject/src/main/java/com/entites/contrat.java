@@ -1,4 +1,4 @@
-package Entity;
+package com.entites;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -114,4 +114,5 @@ public class contrat {
         return botique;
     }
 
+  
 }
